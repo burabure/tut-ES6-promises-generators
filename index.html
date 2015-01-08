@@ -1,0 +1,493 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="utf-8">
+
+    <title>Promesas, Generadores y Async en ES6</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="css/reveal.min.css">
+    <link rel="stylesheet" href="css/theme/moon.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+      if( window.location.search.match( /print-pdf/gi ) ) {
+        var link = document.createElement( 'link' );
+        link.rel = 'stylesheet';
+        link.type = 'text/css';
+        link.href = 'css/print/pdf.css';
+        document.getElementsByTagName( 'head' )[0].appendChild( link );
+      }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+      div.avatar  {
+        display: inline-block;
+        vertical-align: top;
+        background-image: url('http://photos3.meetupstatic.com/photos/member/9/e/2/a/thumb_241480490.jpeg');
+        background-size: cover;
+        border-radius: 80px;
+        width: 46px;
+        height: 46px;
+        margin: -10px 10px 0 0;
+      }
+
+      .reveal p {
+        margin-bottom: 20px;
+      }
+
+      section .content {
+        max-width: 960px;
+        margin: 0 auto;
+      }
+
+      section.code {
+        width: 100%;
+        height: 100%;
+      }
+
+      iframe {
+        width: 100%;
+        height: 100%;
+        min-height: 430px;
+      }
+
+      iframe.present {
+        max-width: 100%;
+        max-height: 100%;
+        width: 100% !important;
+        height: 90% !important;
+        position: absolute;
+        top: 3.9%;
+        left: 0;
+        right: 0;
+        bottom: 0;
+      }
+    </style>
+  </head>
+
+  <body>
+
+    <div class="reveal">
+
+      <!-- Any section element inside of this container is displayed as a slide -->
+      <div class="slides">
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              # Promesas
+              # Generadores
+              # y Async en Es6
+
+
+              <small><div class="avatar"></div>Bura Bure (Nicolás Fernández) - [SantiagoLab.cl](http://santiagolab.cl) - 2014</small>
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Promesas, ¿Que son?
+
+              Una Promesa representa el resultado de una operacion asyncrona o diferida (aplazada)
+
+              El objeto "Promise" se puede encontrar uno de 3 estados:
+
+              - **pending**: estado inicial, no se ah completado ni rechazado
+              - **fulfilled**: operacion finalizada correctamente
+              - **rejected**: operacion fallida
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## sintaxis
+
+              ```
+              var promise = new Promise(function(resolve, reject) {
+                // hacer algo, posiblemente async
+                muchasCosasLaRaja = true;
+
+                if (muchasCosasLaRaja) {
+                  resolve("Promesa Resuelta!");
+                }
+                else {
+                  reject(Error("Promesa Rechazada!"));
+                }
+              });
+              ```
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Soporte Nativo en Browsers?
+              <iframe src="http://caniuse.com/#feat=promises" frameborder="0"></iframe>
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## implementaciones
+
+              - [polyfill](https://github.com/jakearchibald/es6-promise)
+              - [Q](https://github.com/kriskowal/q)
+              - [when](https://github.com/cujojs/when)
+              - [WinJS](http://msdn.microsoft.com/en-us/library/windows/apps/br211867.aspx)
+              - [RSVP.js](https://github.com/tildeio/rsvp.js)
+              - [jQuery *](http://api.jquery.com/?s=Deferred)
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## API
+
+              <iframe src="http://wiki.ecmascript.org/doku.php?id=strawman:promises" frameborder="0"></iframe>
+          </script>
+        </section>
+
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/gazicu/embed?js,console">
+          <h5>Promesas: Hello World</h5>
+        </section>
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/xujur/embed?js,console">
+          <h5>Promesas: Bomba asincrona</h5>
+        </section>
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/yohitu/embed?js,console">
+          <h5>Promesas: AJAX</h5>
+        </section>
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/zekin/embed?js,console">
+          <h5>Promesas: Promise.all</h5>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Promesas vs eventos / callbacks
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ### vs **callbacks**, las promesas nos permiten:
+                - Simplificar una cadena de codigo asincrono
+                - Simplifican el manejo de errores en un 9000% ™ ©
+                - Solucionar en parte el problema de inversion de control
+                - No confundir los inputs con los outputs
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ### vs **eventos**, las promesas nos permiten:
+                - encapsular comportamientos dependientes de condiciones asincronas/diferidas
+                - no preocuparnos de suscripcion/de-suscripcion de eventos dependientes
+
+              <br>
+              por otro lado los eventos siguen siendo una mejor alternativa al momento de
+              procesar acciones que se repetiran mucho; aunque una mescla de los dos es mucho mejor que solo eventos
+          </script>
+        </section>
+
+
+        <!--    Generadores    -->
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Generadores, ¿Que son?
+
+              Los Generadores son funciones que pueden ser pausadas y reanudadas en otro momento.
+
+              Los Generadores retornan (generan) un objeto "Iterator" (iterador) y se pueden encontrar en uno de 4 estados:
+
+              - **newborn**
+              - **executing**
+              - **suspended**
+              - **closed**
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Iteradores, ¿Que Son?
+
+              Los iteradores fundamentalmente son un patrón de diseño de programas que nos permite trabajar con
+              colecciones por medio de abstracciones de alto nivel (programacion funcional)
+
+              Un Iterador es un objeto que sabe como acceder a los items de una colección uno a la vez
+              mientras que mantiene la referencia a su posición actual en la secuencia.
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ### Iteradores, ¿Que Son? 2
+
+              En ES6 las colecciones (arrays, maps, sets) son objetos iteradores
+
+              Los iteradores pueden ser iterados/recorridos con:
+
+              - for
+              - for each
+              - for of
+              - for in
+              - map()
+              - filter()
+              - comprensiones de array/secuecias..
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Sintaxis
+
+              ```
+              // la funcion foo es un generador
+              function* foo() { // la sintaxis para un generador es " function* "
+                  // yield cede la ejecucion, retorna el valor
+                  // a la derecha y pausa el generador
+                  yield 1;
+                  yield 2;
+                  yield 3;
+              }
+
+              var iter = foo(); // iter recibe un objeto iterador
+
+              // next() ejecuta el generador hasta el siguiente yield
+              // dentro del mismo y retorna un objeto con el valor a la derecha de este
+              iter.next(); // { value: 1, done: false }
+              iter.next(); // { value: 2, done: false }
+              iter.next(); // { value: 3, done: false }
+              ```
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Soporte Nativo en Browsers?
+
+              <iframe src="http://kangax.github.io/compat-table/es6/#generators" frameborder="0"></iframe>
+          </script>
+        </section>
+
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/hawiba/embed?js,console">
+          <h5>Generadores: Hello World</h5>
+        </section>
+
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/duyuta/embed?js,console">
+          <h5>Generadores: Generando Iteradores</h5>
+        </section>
+
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/revunu/embed?js,console">
+          <h5>Generadores: Iterando Iteradores</h5>
+        </section>
+
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/sokogi/embed?js,console">
+          <h5>Generadores: Colecciones Flojas</h5>
+        </section>
+
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/lapana/embed?js,console">
+          <h5>Generadores: Insercion de Valores</h5>
+        </section>
+
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/sixatibitu/embed?js,console">
+          <h5>Generadores: Control de Flujo</h5>
+        </section>
+
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/tomutelide/embed?js,console">
+          <h5>Generadores: Delegando Iteradores</h5>
+        </section>
+
+
+        <!--    ASYNC    -->
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Async, ¿Que es?
+              **Draft para ES7**
+
+              La funcion Async permite esperar( ```await``` ) una promesa
+              pausando la ejecucion sin bloquear. Al resolverse la promesa retorna el valor.
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Sintaxis
+              ```
+              async function loadStory() {
+                try {
+                  // await espera a que la llamada asincrona
+                  // se complete antes de entregar el valor
+                  let story = await getJSON('story.json');
+                  addHtmlToPage(story.heading);
+                  for (let chapter of story.chapterURLs.map(getJSON)) {
+                    addHtmlToPage((await chapter).html);
+                  }
+                  console.log("OK!");
+                } catch (err) {
+                  console.log("Algo se rompio!: " + err.message);
+                }
+                document.querySelector('.spinner').style.display = 'none';
+              }
+              ```
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Polyfill
+
+              Ya que Async / Await es solo un draft para ES7, si queremos aprobechar sus beneficios
+              debemos ocupar un polyfill proporcionado por alguna libreria o transpilador
+
+              tambien podemos ocupar una funcion simple como spawn (demostrada en el demo)
+          </script>
+        </section>
+
+
+        <!-- Demo -->
+        <section class="code" data-jsbin="http://jsbin.com/hojakovese/embed?js,console">
+          <h5>Async / Await: tweets</h5>
+        </section>
+
+
+        <!--    FIN    -->
+      <section data-markdown>
+          <script type="text/template">
+              ## Gracias
+
+              <small><div class="avatar"></div>Bura Bure (Nicolás Fernández) - [SantiagoLab.cl](http://santiagolab.cl) - 2014</small>
+          </script>
+        </section>
+
+      </div>
+
+    </div>
+
+    <script src="js/jsbin.js"></script>
+    <script src="lib/js/head.min.js"></script>
+    <script src="js/reveal.min.js"></script>
+
+    <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
+
+    <script>
+      // Full list of configuration options available here:
+      // https://github.com/hakimel/reveal.js#configuration
+      Reveal.initialize({
+        width: "100%",
+        height: "100%",
+        margin: 0,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+          { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
+          { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+          //{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+          //{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+      });
+    </script>
+
+    <script>
+      Reveal.addEventListener( 'ready', function( event ) {
+        // event.currentSlide, event.indexh, event.indexv
+        $('section:not(.code)').wrapInner('<div class="content">');
+      });
+
+      Reveal.addEventListener( 'slidechanged', function( event ) {
+        // console.log( event.currentSlide);
+        window.slide = event.currentSlide;
+        if(event.currentSlide.getAttribute("data-jsbin"))
+          jsBin.embed(event.currentSlide);
+
+          titleHeight = $('h5', event.currentSlide).outerHeight(true) || 0;
+          $('iframe', event.currentSlide).css({
+            'max-height': $(event.currentSlide).height() - titleHeight - parseInt($(event.currentSlide).css('padding-top')) - $('.progress').outerHeight(true),
+            'top': titleHeight + parseInt($(event.currentSlide).css('padding-top'), 10)
+          });
+
+        if(event.previousSlide && event.previousSlide.getAttribute("data-jsbin"))
+          $('iframe', event.previousSlide).remove();
+      });
+    </script>
+
+  </body>
+</html>
