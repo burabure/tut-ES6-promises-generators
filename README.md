@@ -1,6 +1,6 @@
 # tut-ES6-promises-generators
 
-Presentacion: http://burabure.github.io/tut-ES6-promises-generators
+Presentacion: https://burabure.github.io/tut-ES6-promises-generators
 
 Presentacion interactiva sobre **Promesas, Generadores, Iteradores y Async/Await en ES6**
 
