@@ -39,12 +39,18 @@
       div.avatar  {
         display: inline-block;
         vertical-align: top;
-        background-image: url('http://photos3.meetupstatic.com/photos/member/9/e/2/a/thumb_241480490.jpeg');
+        background-image: url('img/avatar.jpg');
         background-size: cover;
         border-radius: 80px;
         width: 46px;
         height: 46px;
         margin: -10px 10px 0 0;
+        vertical-align: middle;
+      }
+
+      .profile {
+        text-align: left;
+        vertical-align: middle !important;
       }
 
       .reveal p {
@@ -91,6 +97,20 @@
         bottom: 0;
         display: block;
       }
+
+      .codigoGigante code {
+        font-size: 16px;
+      }
+
+      .reveal table {
+        margin: 0 auto;
+      }
+      .reveal table th, .reveal table td {
+        text-align: left;
+        border: 1px solid #999;
+        margin: 0;
+        padding: 12px;
+      }
     </style>
   </head>
 
@@ -104,15 +124,80 @@
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
-              ## Promesas
-              ## Generadores
-              ## y Async en Es6
+              ## Codigo Asincrono
+              ## en ES6/7
 
               ![http://goo.gl/86v9kK](http://chart.googleapis.com/chart?cht=qr&chs=150x150&choe=UTF-8&chld=H&chl=http://goo.gl/86v9kK)
 
               <small>http://goo.gl/86v9kK</small>
-              <small><div class="avatar"></div>Bura Bure (Nicolás Fernández) - [SantiagoLab.cl](http://santiagolab.cl) - 2014</small>
+              <small class="profile">
+                <div class="avatar"></div>
+                Bura Bure (Nicolás Fernández) <br>
+                CTOWTFOMGBBQ!!1! en [SantiagoLab.cl](http://santiagolab.cl) <br>
+                @elburabure
+                </small>
           </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section class="codigoGigante">
+
+              <h2>Ejemplo tweets con Callbacks en jQuery</h2>
+
+              <pre><code data-trim>
+// VAMOS A BUSCAR UN JSON
+// parte 1: Un nuevo Callback
+$.ajax({
+  url: '//jsbin.com/cinuna/6.json',
+  dataType: 'json',
+  success: function(response){
+              var json = response;
+              /* Nos devuelve el siguiente json
+                { tweets:
+                    user: "LaViejaDeLaEsquina.com",
+                    [
+                      "//jsbin.com/cinuna/4.json",
+                      "//jsbin.com/cinuna/5.json"
+                    ]
+                }
+              */
+
+              // VAMOS A BUSCAR UN JSON
+              // parte 2: El Callback contraataca
+              $.ajax({
+                url: json.tweets[0], // "//jsbin.com/cinuna/4.json"
+                dataType: 'json',
+                success:  function(response){
+                            var tweet1 = response;
+                            // Nos devuelve el siguiente json
+                            /* {body: "#MasterChefMenudeReyes Charquicán
+                             (pero ÉSE Charquicán, con longaniza ¡con TODO!)"} */
+
+                            // VAMOS A BUSCAR UN JSON
+                            // parte 3: El retorno del Callback
+                            $.ajax({
+                              url: json.tweets[1], // "//jsbin.com/cinuna/5.json"
+                              dataType: 'json',
+                              success:  function(response){
+                                          var tweet2 = response;
+                                          // Nos devuelve el siguiente json
+                                          /* {body: "A todo esto? En qué pasillo del Unimarc
+                                           encuentro jabalí? #MasterChefMenuDeReyes"} */
+
+                                          // Aqui esta el codigo que nos importa... ¬_¬
+                                          console.log(tweet1,tweet2);
+                                          // ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
+                                        },
+                              error: function(err){ console.log(err); }
+                            });
+                },
+                error: function(err){ console.log(err); }
+            });
+  },
+  error: function(err){ console.log(err); }
+});
+                </code></pre>
         </section>
 
 
@@ -178,16 +263,6 @@
         </section>
 
 
-        <!-- Slide -->
-        <section data-markdown>
-          <script type="text/template">
-              ## API
-
-              <iframe src="http://wiki.ecmascript.org/doku.php?id=strawman:promises" frameborder="0"></iframe>
-          </script>
-        </section>
-
-
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/gazicu/embed?js,console">
           <h5>Promesas: Hello World</h5>
@@ -206,6 +281,60 @@
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/zekin/embed?js,console">
           <h5>Promesas: Promise.all</h5>
+        </section>
+
+        <!-- Slide -->
+        <section class="codigoGigante">
+
+              <h2>Ejemplo tweets con Callbacks en jQuery</h2>
+
+              <pre><code data-trim>
+$.ajax({
+  url: '//jsbin.com/cinuna/6.json',
+  dataType: 'json',
+  success: function(response){
+              var json = response;
+                dataType: 'json',
+                success:  function(response){
+                            var tweet1 = response;
+                            $.ajax({
+                              url: json.tweets[1],
+                              dataType: 'json',
+                              success:  function(response){
+                                          var tweet2 = response;
+                                          console.log(tweet1,tweet2);
+                                        },
+                              error: function(err){ console.log(err); }
+                            });
+                },
+                error: function(err){ console.log(err); }
+            });
+  },
+  error: function(err){ console.log(err); }
+});
+                </code></pre>
+        </section>
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Ejemplo tweets con Promesas
+
+              ```
+              get('//jsbin.com/cinuna/6.json')
+                .then(function(response){
+                  var json = JSON.parse(response);
+                  var tweetsPrometidos = [get(json.tweets[0]), get(json.tweets[1])];
+                  return Promise.all(tweetsPrometidos);
+                })
+                .then(function(tweets){
+                  for(var tweet of tweets) {
+                    console.log(JSON.parse(tweet));
+                  }
+                })
+                .catch(function(err){ console.log(err); });
+              ```
+          </script>
         </section>
 
 
@@ -378,11 +507,13 @@
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
-              ## Async, ¿Que es?
+              ## Funciones Asincronas, ¿Que son?
               **Draft para ES7**
 
-              La funcion Async permite esperar( ```await``` ) una promesa
+              la funcion Async permite esperar( ```await``` ) una promesa
               pausando la ejecucion sin bloquear. Al resolverse la promesa retorna el valor.
+
+              [https://github.com/lukehoban/ecmascript-asyncawait]
           </script>
         </section>
 
@@ -431,6 +562,184 @@
         </section>
 
 
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Ejemplo tweets con Promesas
+
+              ```
+              get('//jsbin.com/cinuna/6.json')
+                .then(function(response){
+                  var json = JSON.parse(response);
+                  var tweetsPrometidos = [get(json.tweets[0]), get(json.tweets[1])];
+                  return Promise.all(tweetsPrometidos);
+                })
+                .then(function(tweets){
+                  for(var tweet of tweets) {
+                    console.log(JSON.parse(tweet));
+                  }
+                })
+                .catch(function(err){ console.log(err); });
+              ```
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Ejemplo tweets con Async / Await
+
+              ```
+              spawn(function* () {
+                try {
+                  var data = yield get('//jsbin.com/cinuna/6.json');
+                  var j = JSON.parse(data);
+                  var tweets = yield Promise.all([get(j.tweets[0]), get(j.tweets[1])]);
+
+                  for(var tweet of tweets) { console.log(JSON.parse(tweet)); }
+                }
+                catch (err){ console.log(err); }
+              });
+              ```
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Ejemplo tweets con Async / Await v2
+
+              ```
+              var getTweets = spawn(function* () {
+                try {
+                  var data = yield get('//jsbin.com/cinuna/6.json');
+                  var j = JSON.parse(data);
+                  var tweets = yield Promise.all([get(j.tweets[0]), get(j.tweets[1])]);
+                  return tweets;
+                }
+                catch (err){ return(err); }
+              });
+
+              getTweets.then(function(tweets){
+                for(var tweet of tweets) { console.log(JSON.parse(tweet)); }
+              });
+              ```
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section>
+
+          <h3>Podemos pensar en estas caracteristicas de ES6/7</h3>
+          <h3>de la siguiente manera:</h3>
+
+          <br>
+
+          <table>
+            <thead>
+            <tr>
+            <th></th>
+            <th align="center">Sync</th>
+            <th align="center">Async</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+            <td>function</td>
+            <td align="center">T</td>
+            <td align="center">Promise</td>
+            </tr>
+            <tr>
+            <td>function*</td>
+            <td align="center">Iterator</td>
+            <td align="center">???</td>
+            </tr>
+            </tbody>
+          </table>
+
+          <br>
+          <p>La pregunta es: "que nos devuelve un generador asincrono?"</p>
+        </section>
+
+
+        <!-- Slide -->
+        <section>
+          <img src="img/deeper.jpg" alt="">
+        </section>
+
+
+        <!--    ASYNC GENERATORS    -->
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Generadores Asincronos, ¿Que son?
+              **Draft para ES7**
+
+
+              Los Generadores Asincronos nos permiten consumir una coleccion de valores asincrona
+              como si se tratara de una coleccion sincrona.
+
+
+              Los Generadores Asincronos nos devuelven un tipo "Observable"
+
+              [https://github.com/jhusain/asyncgenerator]
+          </script>
+        </section>
+
+
+        <!--    ASYNC GENERATORS    -->
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              Los Generadores Asincronos aun no tienen una API definida, polyfill o transpilacion a ES5
+
+              Pero nos permitiran escribir operaciones asincronas complejas, de una manera declarativa y clara.
+
+              ```
+              function getMouseDrags(elmt) {
+                var mouseDowns = Observable.fromEvent(elmt, "mousedown"),
+                var documentMouseMoves = Observable.fromEvent(document.body, "mousemove"),
+                var documentMouseUps = Observable.fromEvent(document.body, "mouseup");
+
+                return mouseDowns.concatMap(mouseDown =>
+                  documentMouseMoves.takeUntil(documentMouseUps));
+              };
+
+              var image = document.createElement("img");
+              document.body.appendChild(image);
+
+              getMouseDrags(image).forEach(dragEvent => {
+                image.style.left = dragEvent.clientX;
+                image.style.top = dragEvent.clientY;
+              });
+              ```
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              Incluso podremos declarar operaciones de Observacion Asincrona.
+
+              ```
+              async function testFn() {
+                var writer = new AsyncStreamWriter("/...");
+
+                for(var x on new AsyncStreamReader("/...")) {
+                  await writer.write(x);
+                }
+              }
+              ```
+
+              <small>(HYPE... claxon claxon---)</small>
+          </script>
+        </section>
+
+
         <!--    FIN    -->
       <section data-markdown>
           <script type="text/template">
@@ -442,7 +751,8 @@
 
               <small>contribuciones y correcciones en <br> https://github.com/burabure/tut-ES6-promises-generators</small>
 
-              <small><div class="avatar"></div>Bura Bure (Nicolás Fernández) - [SantiagoLab.cl](http://santiagolab.cl) - 2014</small>
+              <small class="profile"><div class="avatar"></div>Bura Bure (Nicolás Fernández) <br> CTOWTFOMGBBQ!!1! en [SantiagoLab.cl](http://santiagolab.cl)</small>
+              <small>2015</small>
           </script>
         </section>
 
