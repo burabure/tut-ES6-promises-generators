@@ -294,6 +294,8 @@ $.ajax({
   dataType: 'json',
   success: function(response){
               var json = response;
+              $.ajax({
+                url: json.tweets[0], // "//jsbin.com/cinuna/4.json"
                 dataType: 'json',
                 success:  function(response){
                             var tweet1 = response;
@@ -441,7 +443,7 @@ $.ajax({
 
               var iter = foo(); // iter recibe un objeto iterador
 
-              // next() ejecuta el generador hasta el siguiente yield
+              // next() ejecuta el iterador hasta el siguiente yield
               // dentro del mismo y retorna un objeto con el valor a la derecha de este
               iter.next(); // { value: 1, done: false }
               iter.next(); // { value: 2, done: false }
