@@ -141,6 +141,53 @@
 
 
         <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## ES5.1 y codigo asincrono
+
+              <br>
+
+              Hasta hace poco los patrones de codigo asincrono consistian basicamente de
+               Callbacks, lo que supone los siguientes problemas:
+
+               <br>
+
+              - Inversion del control
+              - Confusion de los inputs con los outputs
+              - El manejo de errores se complejiza considerablemente
+              - El codigo se vuelve dificil de mantener y entender
+          </script>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## El problema de Confianza
+
+              <br>
+
+              ```
+              // (1) tu programa hasta ahora
+
+              funcionAsincrona( function(){
+                  // (2) todo tu programa despues
+              });
+              ```
+
+              <br>
+
+              ¿ Quien controla **funcionAsincrona** ?
+
+
+              ¿ Puedes confiar que **funcionAsincrona** provisione y ejecute (2) correctamente ?
+
+              ¿ Que tanto depende tu codigo de **funcionAsincrona** ?
+          </script>
+        </section>
+
+
+        <!-- Slide -->
         <section class="codigoGigante">
 
               <h2>Ejemplo tweets con Callbacks en jQuery</h2>
@@ -198,6 +245,22 @@ $.ajax({
   error: function(err){ console.log(err); }
 });
                 </code></pre>
+        </section>
+
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Como podemos solucionar estos problemas?
+
+              <br>
+
+              Las nuevas versiones de EcmaScript estan siendo implementadas en
+              Browsers y Runtimes como io.js y Node.js.
+
+              Estas incluyen Patrones e APIs nativas para manejo de
+              codigo asincrono de manera adecuada.
+          </script>
         </section>
 
 
@@ -354,7 +417,7 @@ $.ajax({
               ### vs **callbacks**, las promesas nos permiten:
                 - Simplificar una cadena de codigo asincrono
                 - Simplifican el manejo de errores en un 9000% ™ ©
-                - Solucionar en parte el problema de inversion de control
+                - Solucionar en gran parte el problema de inversion de control
                 - No confundir los inputs con los outputs
           </script>
         </section>
@@ -409,7 +472,7 @@ $.ajax({
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
-              ### Iteradores, ¿Que Son? 2
+              ### Iteradores, parte 2
 
               En ES6 las colecciones (arrays, maps, sets) son objetos iteradores
 
@@ -421,7 +484,7 @@ $.ajax({
               - for in
               - map()
               - filter()
-              - comprensiones de array/secuecias..
+              - comprensiones de colecciones/secuecias..
           </script>
         </section>
 
@@ -696,6 +759,8 @@ $.ajax({
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
+              ## Ejemplo Drag & drop
+
               Los Generadores Asincronos aun no tienen una API definida, polyfill o transpilacion a ES5
 
               Pero nos permitiran escribir operaciones asincronas complejas, de una manera declarativa y clara.
@@ -725,6 +790,8 @@ $.ajax({
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
+              ## Ejemplo Observacion Asincrona
+
               Incluso podremos declarar operaciones de Observacion Asincrona.
 
               ```
@@ -742,6 +809,14 @@ $.ajax({
         </section>
 
 
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+            <img src="img/future.jpg" alt="">
+          </script>
+        </section>
+
+
         <!--    FIN    -->
       <section data-markdown>
           <script type="text/template">
@@ -754,6 +829,7 @@ $.ajax({
               <small>contribuciones y correcciones en <br> https://github.com/burabure/tut-ES6-promises-generators</small>
 
               <small class="profile"><div class="avatar"></div>Bura Bure (Nicolás Fernández) <br> CTOWTFOMGBBQ!!1! en [SantiagoLab.cl](http://santiagolab.cl)</small>
+
               <small>2015</small>
           </script>
         </section>
@@ -792,9 +868,9 @@ $.ajax({
           { src: 'lib/js/classList.js', condition: function() { return !document.body.classList; } },
           { src: 'plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
           { src: 'plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
-          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+          { src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
           //{ src: 'plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
-          //{ src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+          { src: 'plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
         ]
       });
     </script>
