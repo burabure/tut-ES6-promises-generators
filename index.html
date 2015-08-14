@@ -98,7 +98,7 @@
         display: block;
       }
 
-      .codigoGigante code {
+      .códigoGigante code {
         font-size: 16px;
       }
 
@@ -124,7 +124,7 @@
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
-              ## Codigo Asincrono
+              ## código Asíncrono
               ## en ES6/7
 
               ![http://goo.gl/86v9kK](http://chart.googleapis.com/chart?cht=qr&chs=150x150&choe=UTF-8&chld=H&chl=http://goo.gl/86v9kK)
@@ -143,19 +143,19 @@
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
-              ## ES5.1 y codigo asincrono
+              ## ES5.1 y código asíncrono
 
               <br>
 
-              Hasta hace poco los patrones de codigo asincrono consistian basicamente de
+              Hasta hace poco los patrones de código asíncrono consistian basicamente de
                Callbacks, lo que supone los siguientes problemas:
 
                <br>
 
-              - Inversion del control
-              - Confusion de los inputs con los outputs
-              - El manejo de errores se complejiza considerablemente
-              - El codigo se vuelve dificil de mantener y entender
+              - Inversión del control.
+              - Confusión de los inputs con los outputs.
+              - El manejo de errores se complica considerablemente.
+              - El código se vuelve difícil de mantener y entender.
           </script>
         </section>
 
@@ -182,13 +182,13 @@
 
               ¿ Puedes confiar que **funcionAsincrona** provisione y ejecute (2) correctamente ?
 
-              ¿ Que tanto depende tu codigo de **funcionAsincrona** ?
+              ¿ Que tanto depende tu código de **funcionAsincrona** ?
           </script>
         </section>
 
 
         <!-- Slide -->
-        <section class="codigoGigante">
+        <section class="códigoGigante">
 
               <h2>Ejemplo tweets con Callbacks en jQuery</h2>
 
@@ -232,7 +232,7 @@ $.ajax({
                                           /* {body: "A todo esto? En qué pasillo del Unimarc
                                            encuentro jabalí? #MasterChefMenuDeReyes"} */
 
-                                          // Aqui esta el codigo que nos importa... ¬_¬
+                                          // Aqui esta el código que nos importa... ¬_¬
                                           console.log(tweet1,tweet2);
                                           // ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^ ^
                                         },
@@ -259,7 +259,7 @@ $.ajax({
               Browsers y Runtimes como io.js y Node.js.
 
               Estas incluyen Patrones e APIs nativas para manejo de
-              codigo asincrono de manera adecuada.
+              código asíncrono de manera adecuada.
           </script>
         </section>
 
@@ -269,13 +269,13 @@ $.ajax({
           <script type="text/template">
               ## Promesas, ¿Que son?
 
-              Una Promesa representa el resultado de una operacion asincrona o diferida (aplazada)
+              Una Promesa representa el resultado de una operación asincrona o diferida (aplazada)
 
               El objeto "Promise" se puede encontrar uno de 3 estados:
 
-              - **pending**: estado inicial, no se ha completado ni rechazado
-              - **fulfilled**: operacion finalizada correctamente
-              - **rejected**: operacion fallida
+              - **pending**: estado inicial, no se ha completado ni rechazado.
+              - **fulfilled**: operación finalizada correctamente.
+              - **rejected**: operación fallida.
           </script>
         </section>
 
@@ -347,7 +347,7 @@ $.ajax({
         </section>
 
         <!-- Slide -->
-        <section class="codigoGigante">
+        <section class="códigoGigante">
 
               <h2>Ejemplo tweets con Callbacks en jQuery</h2>
 
@@ -415,11 +415,11 @@ $.ajax({
         <section data-markdown>
           <script type="text/template">
               ### vs **callbacks**, las promesas nos permiten:
-                - Componer y razonar claramente sobre nuestro codigo asincrono
-                - Simplificar una cadena de codigo asincrono
+                - Componer y razonar claramente sobre nuestro código asíncrono.
+                - Simplificar una cadena de código asíncrono.
                 - Simplifican el manejo de errores en un 9000% ™ ©
-                - Solucionar en gran parte el problema de inversion de control
-                - No confundir los inputs con los outputs
+                - Solucionar en gran parte el problema de inversión de control.
+                - No confundir los inputs con los outputs.
           </script>
         </section>
 
@@ -428,12 +428,12 @@ $.ajax({
         <section data-markdown>
           <script type="text/template">
               ### vs **eventos**, las promesas nos permiten:
-                - encapsular comportamientos dependientes de condiciones asincronas/diferidas
-                - no preocuparnos de suscripcion/de-suscripcion de eventos dependientes
+                - Encapsular comportamientos dependientes de condiciones asincronas/diferidas.
+                - No preocuparnos de suscripcion/de-suscripcion de eventos dependientes.
 
               <br>
               por otro lado los eventos siguen siendo una mejor alternativa al momento de
-              procesar acciones que se repetiran mucho; aunque una mescla de los dos es mucho mejor que solo eventos
+              procesar acciones que se repetiran mucho; aunque una mezcla de los dos es mucho mejor que solo eventos
           </script>
         </section>
 
@@ -462,7 +462,7 @@ $.ajax({
               ## Iteradores, ¿Que Son?
 
               Los iteradores fundamentalmente son un patrón de diseño de programas que nos permite trabajar con
-              colecciones por medio de abstracciones de alto nivel (programacion funcional)
+              colecciones por medio de abstracciones de alto nivel (programación funcional)
 
               Un Iterador es un objeto que sabe como acceder a los items de una colección uno a la vez
               mientras que mantiene la referencia a su posición actual en la secuencia.
@@ -614,7 +614,7 @@ $.ajax({
           <script type="text/template">
               ## Polyfill
 
-              Ya que Async / Await es solo un draft para ES7, si queremos aprobechar sus beneficios
+              Ya que Async / Await es solo un draft para ES7, si queremos aprovechar sus beneficios
               debemos ocupar un polyfill proporcionado por alguna libreria o transpilador
 
               tambien podemos ocupar una funcion simple como spawn (demostrada en el demo)
@@ -727,7 +727,7 @@ $.ajax({
           </table>
 
           <br>
-          <p>La pregunta es: "que nos devuelve un generador asincrono?"</p>
+          <p>La pregunta es: "¿Que nos devuelve un generador asíncrono?"</p>
         </section>
 
 
@@ -741,15 +741,15 @@ $.ajax({
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
-              ## Generadores Asincronos, ¿Que son?
+              ## Generadores Asíncronos, ¿Que son?
               **Draft para ES7**
 
 
-              Los Generadores Asincronos nos permiten consumir una coleccion de valores asincrona
+              Los Generadores Asíncronos nos permiten consumir una coleccion de valores asincrona
               como si se tratara de una coleccion sincrona.
 
 
-              Los Generadores Asincronos nos devuelven un tipo "Observable"
+              Los Generadores Asíncronos nos devuelven un tipo "Observable"
 
               [https://github.com/jhusain/asyncgenerator]
           </script>
@@ -762,9 +762,9 @@ $.ajax({
           <script type="text/template">
               ## Ejemplo Drag & drop
 
-              Los Generadores Asincronos aun no tienen una API definida, polyfill o transpilacion a ES5
+              Los Generadores Asíncronos aun no tienen una API definida, polyfill o transpilacion a ES5
 
-              Pero nos permitiran escribir operaciones asincronas complejas, de una manera declarativa y clara.
+              Pero nos permitiran escribir operaciónes asincronas complejas, de una manera declarativa y clara.
 
               ```
               function getMouseDrags(elmt) {
@@ -793,7 +793,7 @@ $.ajax({
           <script type="text/template">
               ## Ejemplo Observacion Asincrona
 
-              Incluso podremos declarar operaciones de Observacion Asincrona.
+              Incluso podremos declarar operaciónes de Observacion Asincrona.
 
               ```
               async function testFn() {
