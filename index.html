@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8">
 
-    <title>Promesas, Generadores y Async en ES6</title>
+    <title>Promesas, Generadores y Async en ES2015</title>
 
     <meta name="description" content="">
     <meta name="author" content="Bura Bure (Nicolás Fernández)">
@@ -111,6 +111,12 @@
         margin: 0;
         padding: 12px;
       }
+      #stgoLogo {
+        width: 36%;
+        padding: 0;
+        border: 0;
+        background: none;
+      }
     </style>
   </head>
 
@@ -125,17 +131,20 @@
         <section data-markdown>
           <script type="text/template">
               ## Codigo Asincrono
-              ## en ES6/7
+              ## en ES2015/2016
 
               ![http://goo.gl/86v9kK](http://chart.googleapis.com/chart?cht=qr&chs=150x150&choe=UTF-8&chld=H&chl=http://goo.gl/86v9kK)
 
               <small>http://goo.gl/86v9kK</small>
               <small class="profile">
                 <div class="avatar"></div>
-                Bura Bure (Nicolás Fernández) <br>
-                CTOWTFOMGBBQ!!1! en [SantiagoLab.cl](http://santiagolab.cl) <br>
-                @elburabure
-                </small>
+                Nicolás Fernández @elBuraBure <br>
+                CPO / CTO <br>
+              </small> <br>
+              <a href="http://santiagolab.cl">
+                <img id="stgoLogo" src="img/stgolab.png" alt="SantiagoLab" />
+              </a>
+
           </script>
         </section>
 
@@ -156,6 +165,9 @@
               - Confusion de los inputs con los outputs
               - El manejo de errores se complejiza considerablemente
               - El codigo se vuelve dificil de mantener y entender
+
+              Note:
+              This will only display in the notes window.
           </script>
         </section>
 
@@ -314,7 +326,7 @@ $.ajax({
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
-              ## implementaciones (no nativas/ES6)
+              ## implementaciones no nativas
 
               - [polyfill](https://github.com/jakearchibald/es6-promise)
               - [Q](https://github.com/kriskowal/q)
@@ -475,7 +487,7 @@ $.ajax({
           <script type="text/template">
               ### Iteradores, parte 2
 
-              En ES6 las colecciones (arrays, maps, sets) son objetos iteradores
+              En ES2015 las colecciones (arrays, maps, sets) son objetos iteradores
 
               Los iteradores pueden ser iterados/recorridos con:
 
@@ -699,7 +711,7 @@ $.ajax({
         <!-- Slide -->
         <section>
 
-          <h3>Podemos pensar en estas caracteristicas de ES6/7</h3>
+          <h3>Podemos pensar en estas caracteristicas de ES2015/2016</h3>
           <h3>de la siguiente manera:</h3>
 
           <br>
