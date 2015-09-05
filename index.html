@@ -599,20 +599,6 @@ $.ajax({
         </section>
 
 
-        <!-- Slide -->
-        <section data-markdown>
-          <script type="text/template">
-              ## Soporte Nativo en Browsers?
-
-              <iframe src="http://kangax.github.io/compat-table/es6/#generators" frameborder="0"></iframe>
-
-              Note:
-              - (19:30)
-              - El Soporte hoy es bajo, pero siempre debes usar Babel, polyfills o librerias!
-          </script>
-        </section>
-
-
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/hawiba/embed?js,console">
           <h5>Generadores: Hello World</h5>
@@ -690,6 +676,7 @@ $.ajax({
 
               Note:
               - (20:30)
+              - Tenemos Promesas, tenemos generadores, que pasa si los mesclamos?
           </script>
         </section>
 
@@ -698,11 +685,11 @@ $.ajax({
         <section data-markdown>
           <script type="text/template">
               ## Sintaxis
-              ```
+              ```js
               async function loadStory() {
                 try {
                   // await espera a que la llamada asincrona
-                  // se complete antes de entregar el valor
+                  // se complete antes de entregar el valor}
                   var story = await getJSON('story.json');
                   console.log("OK!", story);
                 } catch (err) {
