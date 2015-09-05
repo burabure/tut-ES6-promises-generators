@@ -167,7 +167,9 @@
               - El codigo se vuelve dificil de mantener y entender
 
               Note:
-              This will only display in the notes window.
+              - (2:00)
+              - Explicar JS = ES, Explicar ES5, ES6/2015.
+              - Inversion => un frag. de tu app es controlado por una funciona utilitaria
           </script>
         </section>
 
@@ -195,6 +197,12 @@
               ¿ Puedes confiar que **funcionAsincrona** provisione y ejecute (2) correctamente ?
 
               ¿ Que tanto depende tu codigo de **funcionAsincrona** ?
+
+              Note:
+              - (4:00)
+              - Quien controla la libreria?, sabes como funciona por dentro?
+              - Que pasa cuando cambian versiones?, o si nececitas cambiar la libreria?
+              - Tu App se acopla fuertemente a una libreria utilitaria
           </script>
         </section>
 
@@ -257,6 +265,12 @@ $.ajax({
   error: function(err){ console.log(err); }
 });
                 </code></pre>
+          <aside class="notes">
+            <li>(5:00)</li>
+            <li>Vamos a buscar unos tweets con jQuery</li>
+            <li>Primero traemos un Json con el perfil del usuario y una lista de urls de sus Tweets</li>
+            <li>Parte1...</li>
+          </aside>
         </section>
 
 
@@ -272,6 +286,12 @@ $.ajax({
 
               Estas incluyen Patrones e APIs nativas para manejo de
               codigo asincrono de manera adecuada.
+
+              Note:
+              - (7:00)
+              - Les voy a mostrar unos patrones que simplifican el codigo asincrono
+              - Estos patrones pueden ocuparlos nativamente en ES2015/16
+              - Pero son solo patrones, pueden usarlos con cualquier libreria, ambiente o lenguajes
           </script>
         </section>
 
@@ -288,6 +308,11 @@ $.ajax({
               - **pending**: estado inicial, no se ha completado ni rechazado
               - **fulfilled**: operacion finalizada correctamente
               - **rejected**: operacion fallida
+
+              Note:
+              - (8:00)
+              - Primer Patron y el mas Importante!
+              - Es un Valor "Prometido"
           </script>
         </section>
 
@@ -310,6 +335,14 @@ $.ajax({
                 }
               });
               ```
+
+              Note:
+              - (8:30)
+              - La Promesa se construye con dos funciones
+              - resolve y reject
+              - resolve es como return
+              - reject es como throw
+              - Es tu trabajo envolver cosas asincronas en una promesa
           </script>
         </section>
 
@@ -319,6 +352,11 @@ $.ajax({
           <script type="text/template">
               ## Soporte Nativo en Browsers?
               <iframe src="http://caniuse.com/#feat=promises" frameborder="0"></iframe>
+
+              Note:
+              - (9:30)
+              - Todos menos IE
+              - Pero Edge lo hace bien!, un aplauso
           </script>
         </section>
 
@@ -326,14 +364,21 @@ $.ajax({
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
-              ## implementaciones no nativas
+              ## Como Ocuparlas en todos los navegadores y runtimes?
 
+              - [Babel](https://babeljs.io)
+              - [BlueBird](https://github.com/petkaantonov/bluebird)
               - [polyfill](https://github.com/jakearchibald/es6-promise)
               - [Q](https://github.com/kriskowal/q)
               - [when](https://github.com/cujojs/when)
               - [WinJS](http://msdn.microsoft.com/en-us/library/windows/apps/br211867.aspx)
               - [RSVP.js](https://github.com/tildeio/rsvp.js)
               - [jQuery *](http://api.jquery.com/?s=Deferred)
+
+              Note:
+              - (10:00)
+              - Babel es un transpilador...
+              - jQuery hace las cosas como se le da la gana y la api no es estandar, pero no es muy diferente
           </script>
         </section>
 
@@ -341,21 +386,36 @@ $.ajax({
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/gazicu/embed?js,console">
           <h5>Promesas: Hello World</h5>
+
+          <aside class="notes">
+            <li>(10:30)</li>
+            <li>Cuando lleguen a su casa pueden jugar con esta presentacion interactiva</li>
+            <li>Voy a dejarles el link y un codigo qr al final para que le saquen una foto</li>
+          </aside>
         </section>
 
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/xujur/embed?js,console">
           <h5>Promesas: Bomba asincrona</h5>
+          <aside class="notes">
+            <li>(SKIP)</li>
+          </aside>
         </section>
 
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/yohitu/embed?js,console">
           <h5>Promesas: AJAX</h5>
+          <aside class="notes">
+            <li>(12:30)</li>
+          </aside>
         </section>
 
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/zekin/embed?js,console">
           <h5>Promesas: Promise.all</h5>
+          <aside class="notes">
+            <li>(14:00)</li>
+          </aside>
         </section>
 
         <!-- Slide -->
@@ -390,6 +450,9 @@ $.ajax({
   error: function(err){ console.log(err); }
 });
                 </code></pre>
+          <aside class="notes">
+            <li>(16:00)</li>
+          </aside>
         </section>
 
         <!-- Slide -->
@@ -411,6 +474,8 @@ $.ajax({
                 })
                 .catch(function(err){ console.log(err); });
               ```
+              Note:
+              - (16:15)
           </script>
         </section>
 
@@ -418,7 +483,7 @@ $.ajax({
         <!-- Slide -->
         <section data-markdown>
           <script type="text/template">
-              ## Promesas vs eventos / callbacks
+              ## Promesas vs callbacks
           </script>
         </section>
 
@@ -428,24 +493,14 @@ $.ajax({
           <script type="text/template">
               ### vs **callbacks**, las promesas nos permiten:
                 - Componer y razonar claramente sobre nuestro codigo asincrono
-                - Simplificar una cadena de codigo asincrono
+                - Simplificar una cadena de codigo asincrono, no mas nesting
                 - Simplifican el manejo de errores en un 9000% ™ ©
-                - Solucionar en gran parte el problema de inversion de control
+                - Solucionar en parte el problema de inversion de control
                 - No confundir los inputs con los outputs
-          </script>
-        </section>
 
-
-        <!-- Slide -->
-        <section data-markdown>
-          <script type="text/template">
-              ### vs **eventos**, las promesas nos permiten:
-                - encapsular comportamientos dependientes de condiciones asincronas/diferidas
-                - no preocuparnos de suscripcion/de-suscripcion de eventos dependientes
-
-              <br>
-              por otro lado los eventos siguen siendo una mejor alternativa al momento de
-              procesar acciones que se repetiran mucho; aunque una mescla de los dos es mucho mejor que solo eventos
+              Note:
+              - (17:00)
+              - Si me prestaron atencion hasta ahora ya tienen lo mas importante de la charla
           </script>
         </section>
 
@@ -458,12 +513,18 @@ $.ajax({
 
               Los Generadores son funciones que pueden ser pausadas y reanudadas en otro momento.
 
-              Los Generadores retornan (generan) un objeto "Iterator" (iterador) y se pueden encontrar en uno de 4 estados:
+              Estas pausas en realidad **CEDEN** la ejecucion al resto de tu programa,
+              es decir **no bloquean** la ejecucion.
 
-              - **newborn**
-              - **executing**
-              - **suspended**
-              - **closed**
+              Los Generadores retornan (generan) un objeto "Iterator" (iterador)
+
+              Note:
+              - (18:00)
+              - Segundo Patron!
+              - Los Generadores son funciones que puedes pausar
+              - Puedes hacer que te retornen muchos valores
+              - Cada vez que pausas la funcion, puedes retornar un valor
+              - Retornan un iterador
           </script>
         </section>
 
@@ -473,11 +534,14 @@ $.ajax({
           <script type="text/template">
               ## Iteradores, ¿Que Son?
 
-              Los iteradores fundamentalmente son un patrón de diseño de programas que nos permite trabajar con
-              colecciones por medio de abstracciones de alto nivel (programacion funcional)
+              Los iteradores fundamentalmente son un patrón que nos permite trabajar con
+              colecciones por medio de abstracciones de alto nivel
 
-              Un Iterador es un objeto que sabe como acceder a los items de una colección uno a la vez
-              mientras que mantiene la referencia a su posición actual en la secuencia.
+              Un Iterador es un objeto que sabe como acceder a los items de una colección **uno a la vez**
+              mientras que **mantiene la referencia** a su posición actual en la secuencia.
+
+              Note:
+              - (18:30)
           </script>
         </section>
 
@@ -498,6 +562,9 @@ $.ajax({
               - map()
               - filter()
               - comprensiones de colecciones/secuecias..
+
+              Note:
+              - (18:45)
           </script>
         </section>
 
@@ -525,6 +592,9 @@ $.ajax({
               iter.next(); // { value: 2, done: false }
               iter.next(); // { value: 3, done: false }
               ```
+
+              Note:
+              - (19:00)
           </script>
         </section>
 
@@ -535,6 +605,10 @@ $.ajax({
               ## Soporte Nativo en Browsers?
 
               <iframe src="http://kangax.github.io/compat-table/es6/#generators" frameborder="0"></iframe>
+
+              Note:
+              - (19:30)
+              - El Soporte hoy es bajo, pero siempre debes usar Babel, polyfills o librerias!
           </script>
         </section>
 
@@ -542,42 +616,63 @@ $.ajax({
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/hawiba/embed?js,console">
           <h5>Generadores: Hello World</h5>
+          <aside class="notes">
+            <li>(19:45)</li>
+          </aside>
         </section>
 
 
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/duyuta/embed?js,console">
           <h5>Generadores: Generando Iteradores</h5>
+          <aside class="notes">
+            <li>(SKIP)</li>
+          </aside>
         </section>
 
 
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/revunu/embed?js,console">
           <h5>Generadores: Iterando Iteradores</h5>
+          <aside class="notes">
+            <li>(SKIP)</li>
+          </aside>
         </section>
 
 
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/sokogi/embed?js,console">
           <h5>Generadores: Colecciones Flojas</h5>
+          <aside class="notes">
+            <li>(SKIP)</li>
+          </aside>
         </section>
 
 
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/lapana/embed?js,console">
           <h5>Generadores: Insercion de Valores</h5>
+          <aside class="notes">
+            <li>(SKIP)</li>
+          </aside>
         </section>
 
 
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/sixatibitu/embed?js,console">
           <h5>Generadores: Control de Flujo</h5>
+          <aside class="notes">
+            <li>(SKIP)</li>
+          </aside>
         </section>
 
 
         <!-- Demo -->
         <section class="code" data-jsbin="http://jsbin.com/tomutelide/embed?js,console">
           <h5>Generadores: Delegando Iteradores</h5>
+          <aside class="notes">
+            <li>(SKIP)</li>
+          </aside>
         </section>
 
 
@@ -592,6 +687,9 @@ $.ajax({
               pausando la ejecucion sin bloquear. Al resolverse la promesa retorna el valor.
 
               [https://github.com/lukehoban/ecmascript-asyncawait]
+
+              Note:
+              - (20:30)
           </script>
         </section>
 
@@ -605,40 +703,29 @@ $.ajax({
                 try {
                   // await espera a que la llamada asincrona
                   // se complete antes de entregar el valor
-                  let story = await getJSON('story.json');
-                  addHtmlToPage(story.heading);
-                  for (let chapter of story.chapterURLs.map(getJSON)) {
-                    addHtmlToPage((await chapter).html);
-                  }
-                  console.log("OK!");
+                  var story = await getJSON('story.json');
+                  console.log("OK!", story);
                 } catch (err) {
                   console.log("Algo se rompio!: " + err.message);
                 }
                 document.querySelector('.spinner').style.display = 'none';
               }
               ```
-          </script>
-        </section>
 
-
-        <!-- Slide -->
-        <section data-markdown>
-          <script type="text/template">
-              ## Polyfill
-
-              Ya que Async / Await es solo un draft para ES7, si queremos aprobechar sus beneficios
-              debemos ocupar un polyfill proporcionado por alguna libreria o transpilador
-
-              tambien podemos ocupar una funcion simple como spawn (demostrada en el demo)
+              Note:
+              - (21:30)
           </script>
         </section>
 
 
         <!-- Demo -->
-        <section class="code" data-jsbin="http://jsbin.com/hojakovese/embed?js,console">
+        <section class="code" data-jsbin="http://jsbin.com/zopika/embed?js,console">
           <h5>Async / Await: tweets</h5>
-        </section>
 
+          <aside class="notes">
+            <li>(22:30)</li>
+          </aside>
+        </section>
 
         <!-- Slide -->
         <section data-markdown>
@@ -659,6 +746,9 @@ $.ajax({
                 })
                 .catch(function(err){ console.log(err); });
               ```
+
+              Note:
+              - (23:00)
           </script>
         </section>
 
@@ -669,17 +759,20 @@ $.ajax({
               ## Ejemplo tweets con Async / Await
 
               ```
-              spawn(function* () {
+              (async function() {
                 try {
-                  var data = yield get('//jsbin.com/cinuna/6.json');
+                  var data = await get('//jsbin.com/cinuna/6.json');
                   var j = JSON.parse(data);
-                  var tweets = yield Promise.all([get(j.tweets[0]), get(j.tweets[1])]);
+                  var tweets = await Promise.all([get(j.tweets[0]), get(j.tweets[1])]);
 
                   for(var tweet of tweets) { console.log(JSON.parse(tweet)); }
                 }
                 catch (err){ console.log(err); }
-              });
+              })();
               ```
+
+              Note:
+              - (23:15)
           </script>
         </section>
 
@@ -690,21 +783,45 @@ $.ajax({
               ## Ejemplo tweets con Async / Await v2
 
               ```
-              var getTweets = spawn(function* () {
+              var getTweets = (async function() {
                 try {
-                  var data = yield get('//jsbin.com/cinuna/6.json');
+                  var data = await get('//jsbin.com/cinuna/6.json');
                   var j = JSON.parse(data);
-                  var tweets = yield Promise.all([get(j.tweets[0]), get(j.tweets[1])]);
+                  var tweets = await Promise.all([get(j.tweets[0]), get(j.tweets[1])]);
                   return tweets;
                 }
                 catch (err){ return(err); }
-              });
+              })();
 
               getTweets.then(function(tweets){
                 for(var tweet of tweets) { console.log(JSON.parse(tweet)); }
               });
               ```
+
+              Note:
+              - (23:45)
           </script>
+        </section>
+
+        <!-- Slide -->
+        <section data-markdown>
+          <script type="text/template">
+              ## Polyfill
+
+              Si no queremos jugar con features de ES2016, por que su api no esta bien definida aun,
+              podemos ocupar una funcion simple como **spawn** o librerias como **co** y generadores
+
+              Note:
+              - (SKIP)
+          </script>
+        </section>
+
+        <section class="code" data-jsbin="http://jsbin.com/hojakovese/embed?js,console">
+          <h5>Spawn: tweets</h5>
+
+          <aside class="notes">
+            <li>(SKIP)</li>
+          </aside>
         </section>
 
 
@@ -740,12 +857,10 @@ $.ajax({
 
           <br>
           <p>La pregunta es: "que nos devuelve un generador asincrono?"</p>
-        </section>
 
-
-        <!-- Slide -->
-        <section>
-          <img src="img/deeper.jpg" alt="">
+          <aside class="notes">
+            <li>(24:30)</li>
+          </aside>
         </section>
 
 
@@ -764,6 +879,9 @@ $.ajax({
               Los Generadores Asincronos nos devuelven un tipo "Observable"
 
               [https://github.com/jhusain/asyncgenerator]
+
+              Note:
+              - (25:00)
           </script>
         </section>
 
@@ -796,6 +914,10 @@ $.ajax({
                 image.style.top = dragEvent.clientY;
               });
               ```
+
+              Note:
+              - (25:30)
+              - Eventos como un "array" asincrono
           </script>
         </section>
 
@@ -817,7 +939,8 @@ $.ajax({
               }
               ```
 
-              <small>(HYPE... claxon claxon---)</small>
+              Note:
+              - (26:00)
           </script>
         </section>
 
@@ -826,6 +949,11 @@ $.ajax({
         <section data-markdown>
           <script type="text/template">
             <img src="img/future.jpg" alt="">
+            Note:
+            - (26:30)
+            - Javascript es el unico lenguaje capaz de compartir codigo y datos en tiempo real entre servidor y cliente
+            - El lenguaje esta empujando fuertemente a un desarrollo agily una actulizacion constante del mismo
+            - Creo que es el uno de los mejores lenguajes para afrontar los problemas de hoy; big data, cloud, networking, concurrency
           </script>
         </section>
 
@@ -841,9 +969,14 @@ $.ajax({
 
               <small>contribuciones y correcciones en <br> https://github.com/burabure/tut-ES6-promises-generators</small>
 
-              <small class="profile"><div class="avatar"></div>Bura Bure (Nicolás Fernández) <br> CTOWTFOMGBBQ!!1! en [SantiagoLab.cl](http://santiagolab.cl)</small>
-
-              <small>2015</small>
+              <small class="profile">
+                <div class="avatar"></div>
+                Nicolás Fernández @elBuraBure <br>
+                CPO / CTO <br>
+              </small> <br>
+              <a href="http://santiagolab.cl">
+                <img id="stgoLogo" src="img/stgolab.png" alt="SantiagoLab" />
+              </a>
           </script>
         </section>
 
